@@ -13,6 +13,7 @@
 	let errorMessage = $state('');
 	let currentTheme = $state('light');
 	let isLoggedIn = $state(false);
+	let currentUser = $state<GitHubUser | null>(null);
 
 	// Subscribe to theme store
 	$effect(() => {
@@ -23,9 +24,18 @@
 	});
 
 	// Check login status on mount
-	onMount(() => {
+	onMount(async () => {
 		const token = localStorage.getItem('github_token');
 		isLoggedIn = !!token;
+		if (isLoggedIn) {
+			try {
+				currentUser = await fetchCurrentUser();
+			} catch {
+				// If fetch fails, treat as not logged in
+				localStorage.removeItem('github_token');
+				isLoggedIn = false;
+			}
+		}
 	});
 
 	async function handleSearch() {
@@ -57,7 +67,7 @@
 
 	function handleLogin() {
 		// GitHub OAuth flow
-		const clientId = 'Ov23liIoy8c8uTszx8VR'; // TODO: Replace with actual client ID
+		const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID || 'Ov23liIoy8c8uTszx8VR';
 		const redirectUri = `${window.location.origin}/auth/callback`;
 		const scope = 'user:email';
 		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
@@ -68,6 +78,7 @@
 	function handleLogout() {
 		localStorage.removeItem('github_token');
 		isLoggedIn = false;
+		currentUser = null;
 	}
 </script>
 
@@ -78,6 +89,7 @@
 		theme={currentTheme}
 		onToggleTheme={handleThemeToggle}
 		{isLoggedIn}
+		{currentUser}
 		onLogin={handleLogin}
 		onLogout={handleLogout}
 	/>

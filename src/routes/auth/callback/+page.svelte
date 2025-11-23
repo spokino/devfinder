@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	onMount(() => {
+	onMount(async () => {
 		const urlParams = new URLSearchParams(window.location.search);
 		const code = urlParams.get('code');
 		const error = urlParams.get('error');
@@ -11,10 +11,29 @@
 			console.error('OAuth error:', error);
 			window.location.href = '/';
 		} else if (code) {
-			// In a real app, exchange code for access token on the server
-			// For demo purposes, simulate successful login
-			localStorage.setItem('github_token', 'simulated_token_' + code);
-			window.location.href = '/';
+			// Exchange code for access token
+			try {
+				const response = await fetch('/auth/token', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ code })
+				});
+
+				const data = await response.json();
+
+				if (data.error) {
+					console.error('Token exchange error:', data.error);
+					window.location.href = '/dashboard?error=auth_failed';
+				} else {
+					localStorage.setItem('github_token', data.access_token);
+					window.location.href = '/dashboard';
+				}
+			} catch (err) {
+				console.error('Failed to exchange token:', err);
+				window.location.href = '/dashboard?error=auth_failed';
+			}
 		} else {
 			// No code or error, redirect to home
 			window.location.href = '/';

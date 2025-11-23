@@ -1,0 +1,71 @@
+<script lang="ts">
+	import { fetchGitHubUser, themeStore, type GitHubUser, type SearchState } from '$lib';
+	import Header from '$lib/components/Header.svelte';
+	import SearchBar from '$lib/components/SearchBar.svelte';
+	import UserProfile from '$lib/components/UserProfile.svelte';
+	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
+	import LoadingSkeleton from '$lib/components/LoadingSkeleton.svelte';
+
+	let searchQuery = $state('');
+	let user = $state<GitHubUser | null>(null);
+	let searchState = $state<SearchState>('idle');
+	let errorMessage = $state('');
+	let currentTheme = $state('light');
+
+	// Subscribe to theme store
+	$effect(() => {
+		const unsubscribe = themeStore.subscribe((theme) => {
+			currentTheme = theme;
+		});
+		return unsubscribe;
+	});
+
+	async function handleSearch() {
+		if (!searchQuery.trim()) return;
+
+		searchState = 'loading';
+		errorMessage = '';
+
+		try {
+			user = await fetchGitHubUser(searchQuery.trim());
+			searchState = 'success';
+		} catch (error) {
+			searchState = 'error';
+			errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+			user = null;
+		}
+	}
+
+	function handleSearchQueryChange(value: string) {
+		searchQuery = value;
+		if (errorMessage) {
+			errorMessage = '';
+		}
+	}
+
+	function handleThemeToggle() {
+		themeStore.toggleTheme();
+	}
+</script>
+
+<main
+	class="min-h-screen bg-neutral-100 px-6 py-8 md:px-0 md:py-9 w-full max-w-[327px] md:max-w-[704px] lg:max-w-[730px] mx-auto"
+>
+	<Header theme={currentTheme} onToggleTheme={handleThemeToggle} />
+
+	<SearchBar
+		value={searchQuery}
+		onChange={handleSearchQueryChange}
+		onSearch={handleSearch}
+		error={searchState === 'error' ? errorMessage : ''}
+		loading={searchState === 'loading'}
+	/>
+
+	{#if searchState === 'loading'}
+		<LoadingSkeleton />
+	{:else if searchState === 'success' && user}
+		<UserProfile {user} />
+	{:else if searchState === 'error'}
+		<ErrorMessage message={errorMessage} />
+	{/if}
+</main>

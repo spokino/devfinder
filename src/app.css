@@ -1,0 +1,141 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* Design System - Space Mono Font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Custom CSS Variables for Design System */
+:root {
+	/* Colors - Light Theme */
+	--color-neutral-900: #141d2f;
+	--color-neutral-800: #1e2a47;
+	--color-neutral-700: #2b3442;
+	--color-neutral-500: #4b6a9b;
+	--color-neutral-300: #697c9a;
+	--color-neutral-200: #90a4d4;
+	--color-neutral-100: #f6f8ff;
+	--color-neutral-0: #ffffff;
+
+	--color-blue-500: #0079ff;
+	--color-blue-300: #60abff;
+
+	--color-red-500: #f74646;
+
+	/* Spacing */
+	--spacing-0: 0px;
+	--spacing-025: 2px;
+	--spacing-050: 4px;
+	--spacing-075: 6px;
+	--spacing-100: 8px;
+	--spacing-125: 10px;
+	--spacing-150: 12px;
+	--spacing-200: 16px;
+	--spacing-250: 20px;
+	--spacing-300: 24px;
+	--spacing-400: 32px;
+	--spacing-500: 40px;
+	--spacing-600: 48px;
+	--spacing-800: 64px;
+	--spacing-1000: 80px;
+
+	/* Border Radius */
+	--radius-0: 0px;
+	--radius-4: 4px;
+	--radius-6: 6px;
+	--radius-8: 8px;
+	--radius-10: 10px;
+	--radius-12: 12px;
+	--radius-16: 16px;
+	--radius-20: 20px;
+	--radius-24: 24px;
+	--radius-full: 999px;
+
+	/* Typography */
+	--font-family: 'Space Mono', monospace;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+	--color-neutral-900: #ffffff;
+	--color-neutral-800: #f6f8ff;
+	--color-neutral-700: #90a4d4;
+	--color-neutral-500: #4b6a9b;
+	--color-neutral-300: #2b3442;
+	--color-neutral-200: #1e2a47;
+	--color-neutral-100: #141d2f;
+	--color-neutral-0: #141d2f;
+}
+
+/* Base Styles */
+* {
+	font-family: var(--font-family);
+}
+
+body {
+	background-color: var(--color-neutral-100);
+	color: var(--color-neutral-900);
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+[data-theme='dark'] body {
+	background-color: var(--color-neutral-0);
+	color: var(--color-neutral-900);
+}
+
+/* Text Presets */
+.text-preset-1 {
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 120%;
+}
+
+.text-preset-2 {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 140%;
+}
+
+.text-preset-3 {
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 140%;
+}
+
+.text-preset-3-mobile {
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 140%;
+}
+
+.text-preset-4 {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 150%;
+}
+
+.text-preset-5 {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 150%;
+}
+
+.text-preset-6 {
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 150%;
+}
+
+.text-preset-7 {
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 150%;
+}
+
+.text-preset-8 {
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 140%;
+	letter-spacing: 19.23%;
+}

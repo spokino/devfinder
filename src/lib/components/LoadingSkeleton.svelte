@@ -33,7 +33,7 @@
 
 	<!-- Links Skeleton -->
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-		{#each Array(4) as _, i (i)}
+		{#each [0, 1, 2, 3] as i (i)}
 			<div class="flex items-center gap-4" style="animation-delay: {i * 100}ms;">
 				<div class="w-5 h-5 bg-neutral-200 rounded"></div>
 				<div class="h-5 bg-neutral-200 rounded w-32"></div>

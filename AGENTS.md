@@ -10,7 +10,6 @@ This project is a GitHub user search application built with Svelte 5 and TypeScr
 
 The application is in a good state. The basic functionality of searching for a user and displaying their profile is implemented. The application is styled with Tailwind CSS and has a dark mode feature. Unit and e2e tests are set up.
 
-
 ## Build/Lint/Test Commands
 
 - `npm run dev` - Start development server

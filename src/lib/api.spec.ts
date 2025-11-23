@@ -33,7 +33,11 @@ describe('GitHub API', () => {
 
 		const result = await fetchGitHubUser('octocat');
 		expect(result).toEqual(mockUser);
-		expect(global.fetch).toHaveBeenCalledWith('https://api.github.com/users/octocat');
+		expect(global.fetch).toHaveBeenCalledWith('https://api.github.com/users/octocat', {
+			headers: {
+				Accept: 'application/vnd.github.v3+json'
+			}
+		});
 	});
 
 	it('should handle 404 error for non-existent user', async () => {
@@ -69,7 +73,11 @@ describe('GitHub API', () => {
 		});
 
 		await fetchGitHubUser('  octocat  ');
-		expect(global.fetch).toHaveBeenCalledWith('https://api.github.com/users/octocat');
+		expect(global.fetch).toHaveBeenCalledWith('https://api.github.com/users/octocat', {
+			headers: {
+				Accept: 'application/vnd.github.v3+json'
+			}
+		});
 	});
 
 	it('should throw error for empty username', async () => {

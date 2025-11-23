@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { fetchGitHubUser, themeStore, type GitHubUser, type SearchState } from '$lib';
 	import Header from '$lib/components/Header.svelte';
 	import SearchBar from '$lib/components/SearchBar.svelte';
@@ -11,6 +12,7 @@
 	let searchState = $state<SearchState>('idle');
 	let errorMessage = $state('');
 	let currentTheme = $state('light');
+	let isLoggedIn = $state(false);
 
 	// Subscribe to theme store
 	$effect(() => {
@@ -18,6 +20,12 @@
 			currentTheme = theme;
 		});
 		return unsubscribe;
+	});
+
+	// Check login status on mount
+	onMount(() => {
+		const token = localStorage.getItem('github_token');
+		isLoggedIn = !!token;
 	});
 
 	async function handleSearch() {
@@ -46,12 +54,33 @@
 	function handleThemeToggle() {
 		themeStore.toggleTheme();
 	}
+
+	function handleLogin() {
+		// GitHub OAuth flow
+		const clientId = 'Ov23liIoy8c8uTszx8VR'; // TODO: Replace with actual client ID
+		const redirectUri = `${window.location.origin}/auth/callback`;
+		const scope = 'user:email';
+		const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
+
+		window.location.href = githubAuthUrl;
+	}
+
+	function handleLogout() {
+		localStorage.removeItem('github_token');
+		isLoggedIn = false;
+	}
 </script>
 
 <main
 	class="min-h-screen bg-neutral-100 px-6 py-8 md:px-0 md:py-9 w-full max-w-[327px] md:max-w-[704px] lg:max-w-[730px] mx-auto"
 >
-	<Header theme={currentTheme} onToggleTheme={handleThemeToggle} />
+	<Header
+		theme={currentTheme}
+		onToggleTheme={handleThemeToggle}
+		{isLoggedIn}
+		onLogin={handleLogin}
+		onLogout={handleLogout}
+	/>
 
 	<SearchBar
 		value={searchQuery}

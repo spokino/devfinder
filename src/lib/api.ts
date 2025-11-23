@@ -8,13 +8,35 @@ export async function fetchGitHubUser(username: string): Promise<GitHubUser> {
 	}
 
 	try {
-		const response = await fetch(`${GITHUB_API_BASE}/users/${encodeURIComponent(username.trim())}`);
+		const headers: Record<string, string> = {
+			Accept: 'application/vnd.github.v3+json'
+		};
+
+		// Add authorization header if token exists
+		let token: string | null = null;
+		try {
+			token = localStorage.getItem('github_token');
+		} catch {
+			// localStorage not available (e.g., in tests or SSR)
+		}
+		if (token) {
+			headers['Authorization'] = `token ${token}`;
+		}
+
+		const response = await fetch(
+			`${GITHUB_API_BASE}/users/${encodeURIComponent(username.trim())}`,
+			{
+				headers
+			}
+		);
 
 		if (!response.ok) {
 			if (response.status === 404) {
 				throw new Error('User not found');
 			} else if (response.status === 403) {
 				throw new Error('API rate limit exceeded. Please try again later.');
+			} else if (response.status === 401) {
+				throw new Error('Authentication failed. Please log in again.');
 			} else {
 				throw new Error(`Failed to fetch user: ${response.statusText}`);
 			}

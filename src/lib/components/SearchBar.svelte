@@ -51,7 +51,9 @@
 
 		{#if error}
 			<p
-				role="alert" id="search-error" class="absolute right-[110px] md:right-[120px] top-1/2 -translate-y-1/2 text-preset-5 text-red-500 font-bold"
+				role="alert"
+				id="search-error"
+				class="absolute right-[110px] md:right-[120px] top-1/2 -translate-y-1/2 text-preset-5 text-red-500 font-bold"
 			>
 				No results
 			</p>

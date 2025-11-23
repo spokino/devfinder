@@ -1,4 +1,5 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-navigation-without-resolve */
 	import type { UserProfileProps } from '$lib';
 	import LocationIcon from './icons/LocationIcon.svelte';
 	import WebsiteIcon from './icons/WebsiteIcon.svelte';

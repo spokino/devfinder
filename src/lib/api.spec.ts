@@ -26,7 +26,7 @@ describe('GitHub API', () => {
 	});
 
 	it('should fetch user data successfully', async () => {
-		(global.fetch as any).mockResolvedValueOnce({
+		vi.mocked(global.fetch).mockResolvedValueOnce({
 			ok: true,
 			json: () => Promise.resolve(mockUser)
 		});
@@ -37,7 +37,7 @@ describe('GitHub API', () => {
 	});
 
 	it('should handle 404 error for non-existent user', async () => {
-		(global.fetch as any).mockResolvedValueOnce({
+		vi.mocked(global.fetch).mockResolvedValueOnce({
 			ok: false,
 			status: 404
 		});
@@ -46,7 +46,7 @@ describe('GitHub API', () => {
 	});
 
 	it('should handle API rate limit error', async () => {
-		(global.fetch as any).mockResolvedValueOnce({
+		vi.mocked(global.fetch).mockResolvedValueOnce({
 			ok: false,
 			status: 403
 		});
@@ -57,15 +57,13 @@ describe('GitHub API', () => {
 	});
 
 	it('should handle network errors', async () => {
-		(global.fetch as any).mockRejectedValueOnce(new Error('Network error'));
+		vi.mocked(global.fetch).mockRejectedValueOnce(new Error('Network error'));
 
-		await expect(fetchGitHubUser('octocat')).rejects.toThrow(
-			'Network error'
-		);
+		await expect(fetchGitHubUser('octocat')).rejects.toThrow('Network error');
 	});
 
 	it('should trim whitespace from username', async () => {
-		(global.fetch as any).mockResolvedValueOnce({
+		vi.mocked(global.fetch).mockResolvedValueOnce({
 			ok: true,
 			json: () => Promise.resolve(mockUser)
 		});

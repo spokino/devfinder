@@ -1,5 +1,16 @@
 # AGENTS.md
 
+## Project Overview
+
+This project is a GitHub user search application built with Svelte 5 and TypeScript. It allows users to search for GitHub users and view their profiles.
+
+- **Figma Design:** [GitHub User Search App](https://www.figma.com/design/CSKrPZ4ETBC5JY5zjRoTXn/github-user-search-app)
+
+## Progress
+
+The application is in a good state. The basic functionality of searching for a user and displaying their profile is implemented. The application is styled with Tailwind CSS and has a dark mode feature. Unit and e2e tests are set up.
+
+
 ## Build/Lint/Test Commands
 
 - `npm run dev` - Start development server

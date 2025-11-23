@@ -38,7 +38,7 @@ test.describe('GitHub User Search', () => {
 		await searchButton.click();
 
 		// Wait for error message
-		await expect(page.locator('text=No results')).toBeVisible();
+		await expect(page.locator('#search-error')).toBeVisible();
 		await expect(page.locator('text=User not found')).toBeVisible();
 	});
 

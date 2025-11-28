@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { fetchGitHubUser } from '$lib';
 	import UserProfile from '$lib/UserProfile.svelte';
 
@@ -8,17 +9,15 @@
 	let error = $state<string | null>(null);
 	let isDark = $state(false);
 
-	// Load theme from localStorage
-	if (typeof window !== 'undefined') {
+	onMount(() => {
 		const savedTheme = localStorage.getItem('theme');
 		isDark = savedTheme === 'dark';
-	}
+		document.documentElement.classList.toggle('dark', isDark);
+	});
 
 	$effect(() => {
-		if (typeof window !== 'undefined') {
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-			document.documentElement.classList.toggle('dark', isDark);
-		}
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		document.documentElement.classList.toggle('dark', isDark);
 	});
 
 	function toggleTheme() {
@@ -48,12 +47,12 @@
 	}
 </script>
 
-<main class="min-h-screen bg-white dark:bg-[#141D2F] p-4 md:p-8">
+<main class="min-h-screen bg-[rgb(var(--bg-main))] p-4 md:p-8">
 	<div class="max-w-4xl mx-auto">
 		<!-- Header with logo and theme toggle -->
 		<header class="flex justify-between items-center mb-8">
-			<h1 class="text-2xl font-bold text-[#141D2F] dark:text-white">devfinder</h1>
-			<button onclick={toggleTheme} class="flex items-center gap-2 text-sm font-bold text-[#4B6A9B] dark:text-[#90A4D4] hover:text-[#141D2F] dark:hover:text-white transition-colors">
+			<a href="/" class="text-2xl font-bold text-[rgb(var(--text-main))] hover:text-[#0079FF] transition-colors">devfinder</a>
+			<button onclick={toggleTheme} class="flex items-center gap-2 text-sm font-bold text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-main))] transition-colors">
 				{isDark ? 'LIGHT' : 'DARK'}
 				{#if isDark}
 					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +67,7 @@
 		</header>
 
 		<!-- Search bar -->
-		<div class="bg-white dark:bg-[#1E2A47] rounded-lg shadow-lg p-4 mb-8">
+		<div class="bg-[rgb(var(--bg-card))] rounded-lg shadow-lg p-4 mb-8">
 			<div class="flex gap-4">
 				<div class="flex-1 relative">
 					<!-- Search icon -->
@@ -79,12 +78,9 @@
 						bind:value={searchInput}
 						onkeydown={handleKeydown}
 						placeholder="Search GitHub username..."
-						class="w-full pl-12 pr-4 py-3 bg-transparent text-[#141D2F] dark:text-white placeholder-[#4B6A9B] dark:placeholder-[#90A4D4] border-none outline-none"
+						class="w-full pl-12 pr-4 py-3 bg-transparent text-[rgb(var(--text-main))] placeholder-[rgb(var(--text-secondary))] border-none outline-none"
 					/>
 				</div>
-				{#if error}
-					<div class="text-red-500 text-sm self-center">{error}</div>
-				{/if}
 				<button
 					onclick={handleSearch}
 					disabled={loading}
@@ -95,20 +91,16 @@
 			</div>
 		</div>
 
-		<!-- Loading state -->
-		{#if loading}
-			<div class="bg-white dark:bg-[#1E2A47] rounded-lg shadow-lg p-6 animate-pulse">
-				<div class="flex flex-col md:flex-row gap-6">
-					<div class="w-24 h-24 md:w-32 md:h-32 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
-					<div class="flex-1 space-y-4">
-						<div class="h-8 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
-						<div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2"></div>
-						<div class="h-4 bg-gray-300 dark:bg-gray-600 rounded w-full"></div>
-						<div class="grid grid-cols-3 gap-4">
-							<div class="h-16 bg-gray-300 dark:bg-gray-600 rounded"></div>
-							<div class="h-16 bg-gray-300 dark:bg-gray-600 rounded"></div>
-							<div class="h-16 bg-gray-300 dark:bg-gray-600 rounded"></div>
-						</div>
+		<!-- Error panel -->
+		{#if error}
+			<div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mt-6">
+				<div class="flex items-center gap-3">
+					<svg class="w-6 h-6 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+					</svg>
+					<div>
+						<h3 class="text-lg font-semibold text-red-800 dark:text-red-200">No results</h3>
+						<p class="text-red-700 dark:text-red-300">{error}</p>
 					</div>
 				</div>
 			</div>

@@ -16,6 +16,7 @@ declare global {
 		bio: string | null;
 		location: string | null;
 		blog: string | null;
+		company: string | null;
 		public_repos: number;
 		followers: number;
 		following: number;

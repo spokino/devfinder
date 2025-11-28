@@ -95,9 +95,91 @@ Nefungoval prepinac dakr modu, dizajn celkom nesedel s figmou
 
 **Prompt:**
 ```
+the implementation is not bad but the dark mode switch is not working and you did not follow the page layout from the figma design (4 icons with details), also make the page title devfinder clickable and redirect to ~/
+you can view the result, here it is in a running instance http://localhost:5173/
+
 ```
 
 **Výsledok:**  
+[x] ⭐⭐⭐ OK, potreboval viac úprav 
+
+**Úpravy:**
+```
+Pridal ikony a upravil design ale dakr mode na light switch nefunguje stale.
+```
+
+**Poznámky:**
+```
+```
+
+---
+
+### Prompt #3: _________________________________
+
+**Nástroj:** [ opencode ]  
+**Kontext:** _________________
+
+**Prompt:**
+```
+do not run npm run dev it will timeout.
+instead use the running server at http://localhost:5173/ if needed.
+the darl/light switch is still not working
+
+```
+
+**Výsledok:**  
+❌ Nefungoval
+
+**Úpravy:**
+```
+Zmenil sposob zmeny css pre dark/light mode 
+```
+
+**Poznámky:**
+```
+```
+
+---
+### Prompt #4: _________________________________
+
+**Nástroj:** [ opencode ]  
+**Kontext:** _________________
+
+**Prompt:**
+```
+[plugin:@tailwindcss/vite:generate:serve] `@config` cannot have a body.
+E:/MyWork/Repos/aicert/app/src/routes/layout.css
+
+```
+
+**Výsledok:**  
+✅ Fungoval perfektne (first try) 
+
+**Úpravy:**
+```
+fixol problem ktory rovno v konzole vyskusal a overil
+```
+
+**Poznámky:**
+```
+```
+
+---
+### Prompt #5: _________________________________
+
+**Nástroj:** [ opencode ]  
+**Kontext:** _________________
+
+**Prompt:**
+```
+When the user is not found the text next to the search button is wrong 
+also there is missing the panel under that see the figma error screen
+the mobile view has wrong wraping after the profile picture
+
+```
+
+**Výsledok:**  
+⭐⭐ Slabé, musel som veľa prepísať
 
 **Úpravy:**
 ```
@@ -105,6 +187,33 @@ Nefungoval prepinac dakr modu, dizajn celkom nesedel s figmou
 
 **Poznámky:**
 ```
+Panel sa uz zobrazuje ale nie je podla dizajnu
+```
+
+---
+### Prompt #5: _________________________________
+
+**Nástroj:** [ opencode ]  
+**Kontext:** _________________
+
+**Prompt:**
+```
+When the user is not found the text next to the search button is wrong 
+also there is missing the panel under that see the figma error screen
+the mobile view has wrong wraping after the profile picture
+
+```
+
+**Výsledok:**  
+⭐⭐ Slabé, musel som veľa prepísať
+
+**Úpravy:**
+```
+```
+
+**Poznámky:**
+```
+Panel sa uz zobrazuje ale nie je podla dizajnu
 ```
 
 ---

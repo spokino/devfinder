@@ -1,16 +1,14 @@
-# AGENTS.md - Development Guidelines for devfinder
+# AGENTS.md - Development Guidelines
 
 ## Build/Lint/Test Commands
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build
 - `npm run check` - Type check with svelte-check
 - `npm run lint` - Run prettier and eslint
 - `npm run format` - Format code with prettier
 - `npm run test` - Run all tests (vitest)
-- `npm run test:unit` - Run unit tests (vitest)
-- `npx vitest --run src/routes/page.svelte.spec.ts` - Run single test file
+- `npx vitest --run <file.spec.ts>` - Run single test file
 
 ## Code Style Guidelines
 

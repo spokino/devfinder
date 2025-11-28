@@ -15,3 +15,21 @@ Display found date from API public profile:
   plan all tasks use svelte5 if needed get documentation from context7 mcp
   read @Agents.md
   use the provided figma desing
+
+Lets start a new feature for this app.
+Read @AGENTS.md to get context. For the added UI elements see figma design.
+The feature is:
+Add a login button ("Sign in with GitHub") in the header, It should then start the OAuth flow so the user can login
+Use the prepared @.env file for oauth client details.
+After obtaining the auth token it should be stored in localStorage.
+Add Session management (login / logout)
+When the user logs in successfuly show a new link in the header with the user avatar and user name.
+This route is just for the logged in user.
+It will navigate to a new page that will show dashboard for the current user.
+Use the same card as for the search result and under that show public repos list (top 10):
+Repo name (link na GitHub)
+Description
+Stars
+count
+Primary language
+Last updated

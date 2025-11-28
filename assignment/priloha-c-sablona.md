@@ -81,13 +81,13 @@ implement the plan
 **Čo som musel upraviť / opraviť:**
 
 ```
-Nefungoval prepinac dakr modu, dizajn celkom nesedel s figmou
+Nefungoval prepinac dark modu, dizajn celkom nesedel s figmou
 ```
 
 **Poznámky / Learnings:**
 
 ```
-[Prečo fungoval / nefungoval? Čo by si urobil inak?]
+Prečo fungoval? Grok 
 ```
 
 ### Prompt #2: ****************\_****************
@@ -109,7 +109,7 @@ you can view the result, here it is in a running instance http://localhost:5173/
 **Úpravy:**
 
 ```
-Pridal ikony a upravil design ale dakr mode na light switch nefunguje stale.
+Pridal ikony a upravil design ale dark mode na light switch nefunguje stale.
 ```
 
 **Poznámky:**
@@ -227,7 +227,7 @@ the mobile view has wrong wraping after the profile picture
 ```
 
 **Výsledok:**  
-⭐⭐ Slabé, musel som veľa prepísať
+⭐⭐ Slabé, musel to nechat prepisat cez prompt
 
 **Úpravy:**
 
@@ -238,7 +238,111 @@ the mobile view has wrong wraping after the profile picture
 **Poznámky:**
 
 ```
-Panel sa uz zobrazuje ale nie je podla dizajnu
+Panel sa uz zobrazuje a dizajn je OK
+```
+
+---
+### Prompt #7: ****************\_****************
+
+**Nástroj:** [ opencode ]  
+**Kontext:** ********\_********
+
+**Prompt:**
+
+```
+Lets start a new feature for this app. 
+Read @AGENTS.md to get context. For the added UI elements see figma design. 
+The feature is: 
+Add a login button ("Sign in with GitHub") in the header, It should then start the OAuth flow so the user can login 
+Use the prepared @.env file for oauth client details.
+After obtaining the auth token it should be stored in localStorage. 
+Add Session management (login / logout)
+When the user logs in successfuly show a new link in the header with the user avatar and user name. 
+This route is just for the logged in user. 
+It will navigate to a new page that will show dashboard for the current user. 
+Use the same card as for the search result and under that show public repos list (top 10): 
+Repo name (link na GitHub) 
+Description 
+Stars 
+count 
+Primary language 
+Last updated
+
+```
+
+**Výsledok:**  
+OAuth prihlasenie funguje, nepresmeruje vsak na novu stranku
+
+
+
+**Úpravy:**
+
+```
+
+```
+
+**Poznámky:**
+
+```
+
+```
+
+---
+### Prompt #8: ****************\_****************
+
+**Nástroj:** [ opencode ]  
+**Kontext:** ********\_********
+
+**Prompt:**
+
+```
+the login works, but we are not redirected to the dashboard page to see the result mentioned
+```
+
+**Výsledok:**  
+Presmeruje a vysledok je dobre
+
+
+
+**Úpravy:**
+
+```
+
+```
+
+**Poznámky:**
+
+```
+
+```
+
+---
+### Prompt #9: ****************\_****************
+
+**Nástroj:** [ opencode ]  
+**Kontext:** ********\_********
+
+**Prompt:**
+
+```
+on the dashboard page we are missing the dark/light mode theme switch
+```
+
+**Výsledok:**  
+Pridal prepinac, works
+
+
+
+**Úpravy:**
+
+```
+
+```
+
+**Poznámky:**
+
+```
+
 ```
 
 ---
@@ -258,7 +362,7 @@ Komplikovanejsie veci bolo potrebne viac krat opraovavat aby sa Grok dopracoval 
 **Prečo to vzniklo:**
 
 ```
-Grok - tento LLM model je super rychly na jednoduchsie veci ale pri takychto komplikovanejsich promptoch ma problem dopracovat sa na prcy krat k zelanemu vysledku.
+Grok - tento LLM model je super rychly na jednoduchsie veci, ale pri takychto komplikovanejsich promptoch ma problem dopracovat sa na prcy krat k zelanemu vysledku.
 ```
 
 **Ako som to vyriešil:**
@@ -282,18 +386,21 @@ Upravil som prompt s informaciami co je zle a co treba opravit. Riesil by som to
 **Čo sa stalo:**
 
 ```
+LLM mal problem pouzit novsiu syntax zavedenu v svelte 5 
 
 ```
 
 **Prečo:**
 
 ```
+sposobene datumom treningu
 
 ```
 
 **Riešenie:**
 
 ```
+mcp context7, cez co si moze LLM pozriet aktualnu dokumentaciu bez halucinacii riecenia 
 
 ```
 
@@ -310,7 +417,7 @@ Upravil som prompt s informaciami co je zle a co treba opravit. Riesil by som to
 **1.**
 
 ```
-[Príklad: Claude Code pre OAuth - fungoval first try, zero problémov]
+API volania a vytvaranie pozdovanych DTO/modelov 
 ```
 
 **2.**
@@ -356,7 +463,7 @@ Tieto horsie LLM mali vaci problem presne dodrzat dizajn a bolo potrebne ich via
 **1.**
 
 ```
-[Príklad: Vždy špecifikuj verziu knižnice v prompte - "NextAuth.js v5"]
+git is your friend, pokial to nejde ako sa ocakavalo, revert is king
 ```
 
 **2.**
@@ -390,18 +497,20 @@ Tieto horsie LLM mali vaci problem presne dodrzat dizajn a bolo potrebne ich via
 **Tip #1:**
 
 ```
-[Konkrétny, actionable tip]
+Pridat si MCP podla toho s cim robite.
 ```
 
 **Tip #2:**
 
 ```
+Podla complexnosti vyskusat viac LLM
 
 ```
 
 **Tip #3:**
 
 ```
+opencode 
 
 ```
 
@@ -435,7 +544,7 @@ MCP chrome-devtools je velmi uzitocny, vie si web otvorit a pozriet co spravil a
 ### 6.2 Najväčšie prekvapenie
 
 ```
-[Čo ťa najviac prekvapilo pri práci s AI?]
+Rychlost s ktorou vies dokoncit feature co by bez ai trvala 3MD+
 ```
 
 ---
@@ -443,7 +552,7 @@ MCP chrome-devtools je velmi uzitocny, vie si web otvorit a pozriet co spravil a
 ### 6.3 Najväčšia frustrácia
 
 ```
-[Čo bolo najfrustrujúcejšie?]
+Gemini 3 release obmedzoval dostupnost Gemini 2.5 Pro
 ```
 
 ---

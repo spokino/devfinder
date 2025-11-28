@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fetchGitHubUser } from '$lib';
+	import { page } from '$app/stores';
+	import { fetchGitHubUser, fetchAuthenticatedUser, session } from '$lib';
 	import UserProfile from '$lib/UserProfile.svelte';
 
 	let searchInput = $state('');
@@ -9,10 +10,33 @@
 	let error = $state<string | null>(null);
 	let isDark = $state(false);
 
-	onMount(() => {
+	let currentSession = $state<{ isLoggedIn: boolean; user: GitHubUser | null; token: string | null }>({ isLoggedIn: false, user: null, token: null });
+
+	session.subscribe(s => {
+		currentSession = s;
+	});
+
+	onMount(async () => {
 		const savedTheme = localStorage.getItem('theme');
 		isDark = savedTheme === 'dark';
 		document.documentElement.classList.toggle('dark', isDark);
+
+		// Handle OAuth callback
+		const urlParams = new URLSearchParams(window.location.search);
+		const token = urlParams.get('token');
+		if (token) {
+			localStorage.setItem('github_token', token);
+			session.update(s => ({ ...s, token, isLoggedIn: true }));
+			// Fetch user data
+			try {
+				const userData = await fetchAuthenticatedUser(token);
+				session.update(s => ({ ...s, user: userData }));
+			} catch (err) {
+				console.error('Failed to fetch user:', err);
+			}
+			// Clean URL
+			window.history.replaceState({}, '', '/');
+		}
 	});
 
 	$effect(() => {
@@ -22,6 +46,15 @@
 
 	function toggleTheme() {
 		isDark = !isDark;
+	}
+
+	function login() {
+		window.location.href = '/auth/github';
+	}
+
+	function logout() {
+		localStorage.removeItem('github_token');
+		session.update(s => ({ isLoggedIn: false, user: null, token: null }));
 	}
 
 	async function handleSearch() {
@@ -49,21 +82,34 @@
 
 <main class="min-h-screen bg-[rgb(var(--bg-main))] p-4 md:p-8">
 	<div class="max-w-4xl mx-auto">
-		<!-- Header with logo and theme toggle -->
+		<!-- Header with logo, auth, and theme toggle -->
 		<header class="flex justify-between items-center mb-8">
 			<a href="/" class="text-2xl font-bold text-[rgb(var(--text-main))] hover:text-[#0079FF] transition-colors">devfinder</a>
-			<button onclick={toggleTheme} class="flex items-center gap-2 text-sm font-bold text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-main))] transition-colors">
-				{isDark ? 'LIGHT' : 'DARK'}
-				{#if isDark}
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-					</svg>
+			<div class="flex items-center gap-4">
+				{#if currentSession.isLoggedIn && currentSession.user}
+					<a href="/dashboard" class="flex items-center gap-2 text-sm font-bold text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-main))] transition-colors">
+						<img src={currentSession.user.avatar_url} alt={currentSession.user.login} class="w-6 h-6 rounded-full" />
+						{currentSession.user.name || currentSession.user.login}
+					</a>
+					<button onclick={logout} class="text-sm font-bold text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-main))] transition-colors">Logout</button>
 				{:else}
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-					</svg>
+					<button onclick={login} class="text-[rgb(var(--text-secondary))] px-4 py-2 rounded-lg font-semibold">
+						Sign in with GitHub
+					</button>
 				{/if}
-			</button>
+				<button onclick={toggleTheme} class="flex items-center gap-2 text-sm font-bold text-[rgb(var(--text-secondary))] hover:text-[rgb(var(--text-main))] transition-colors">
+					{isDark ? 'LIGHT' : 'DARK'}
+					{#if isDark}
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+						</svg>
+					{:else}
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+						</svg>
+					{/if}
+				</button>
+			</div>
 		</header>
 
 		<!-- Search bar -->

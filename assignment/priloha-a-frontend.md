@@ -5,6 +5,7 @@
 ### Časť 1: Public Search (Podľa Figmy github-user-search-app.fig)
 
 **Features:**
+
 - Search by username
 - Display public profile:
   - Avatar, meno, username
@@ -16,14 +17,15 @@
 - Light mode / Dark mode
 
 **API:**
+
 ```
 GET https://api.github.com/users/{username}
 ```
 
-
 ### 🔐 Časť 2: GitHub OAuth Login
 
 **Features:**
+
 - Login button ("Sign in with GitHub")
 - OAuth flow
 - Session management (login / logout)

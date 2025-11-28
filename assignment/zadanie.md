@@ -31,16 +31,19 @@
 ### 1.1 Cieľ certifikácie
 
 Cieľom tohto certifikačného procesu je:
+
 - Dokázať že viete efektívne využívať AI nástroje pri vývoji
 - Ukázať produktivitu s modernou AI asistenciou
 - Poznať silné a slabé stránky AI nástrojov
 
 Pointou NIE JE:
+
 - ❌ Perfektná aplikácia
 - ❌ Množstvo features
 - ❌ Zložitý kód
 
 Pointou JE:
+
 - ✅ Efektívne používanie AI
 - ✅ Dokumentácia AI workflow
 - ✅ Zdieľanie vedomostí
@@ -48,15 +51,18 @@ Pointou JE:
 ### 1.2 Čo budeme hodnotiť
 
 **Funkčnosť aplikácie:**
+
 - Splnené funkcionality zadania
 - Základná kvalita kódu
 
 **AI Workflow Dokumentáciu:**
+
 - Použité AI nástroje
 - Použité prompty
 - Problémy a riešenia
 
 **Prezentácia:**
+
 - Live demo
 - Ukázanie AI workflow
 - Zdieľanie skúseností
@@ -72,6 +78,7 @@ Pointou JE:
 ### 2.1 Typy zadania
 
 **Sú 2 rôzne zadania:**
+
 - Frontend zadanie (Príloha A)
 - Backend zadanie (Príloha B)
 
@@ -87,6 +94,7 @@ V modernom vývoji je AI asistent štandardný nástroj.
 Cieľ: Naučiť sa ho efektívne využívať.
 
 **AI vám pomôže:**
+
 - Generovať boilerplate kód rýchlejšie
 - Implementovať features ktoré nepoznáte
 - Debuggovať problémy
@@ -94,6 +102,7 @@ Cieľ: Naučiť sa ho efektívne využívať.
 - Učiť sa nové technológie počas práce
 
 **AI NIE JE:**
+
 - Náhrada za vaše myslenie
 - Magické riešenie všetkého
 - Vždy správne na prvý krát
@@ -101,6 +110,7 @@ Cieľ: Naučiť sa ho efektívne využívať.
 ### 3.2 Ako efektívne pracovať s AI
 
 **✅ DO:**
+
 - Buďte konkrétni v promptoch
 - Špecifikujte tech stack a verzie
 - Uveďte všetky requirements
@@ -109,6 +119,7 @@ Cieľ: Naučiť sa ho efektívne využívať.
 - Pýtajte sa AI na vysvetlenie
 
 **❌ DON'T:**
+
 - Vágne prompty ("urob dashboard")
 - Očakávať perfektný kód first try
 - Nekriticky akceptovať každý kód
@@ -119,12 +130,14 @@ Cieľ: Naučiť sa ho efektívne využívať.
 ### 4.1 Čo dokumentovať
 
 **Minimum:**
+
 - ✅ Aké AI nástroje ste použili a približne koľko času
 - ✅ Funkčné prompty
 - ✅ Aké ste mali problémy, a ako ste ich vyriešili
 - ✅ Zaujímavé zistenia
 
 **Čo ďalšie:**
+
 - Ktorý nástroj na čo bol najlepší
 - Príklady kedy AI nefungoval
 - Vaše top tipy pre ostatných
@@ -147,6 +160,7 @@ Cieľ: Naučiť sa ho efektívne využívať.
 → Prípadne screenshot
 
 **Odporúčaný workflow:**
+
 ```
 1. Začnite feature
 2. Použijete AI → HNEĎ skopírujte prompt do dokumentu
@@ -164,16 +178,19 @@ Cieľ: Naučiť sa ho efektívne využívať.
 ### 5.1 Čo očakávať na ústnej skúške
 
 **Formát:**
+
 - 10 min prezentácia (vy)
 - zvyšok otázky a rozhovor
 
 **Čo budem hodnotiť:**
+
 - Aplikácia funguje (live demo)
 - Rozumiete čo ste urobili
 - Viete vysvetliť váš AI workflow
 - Rozumiete kedy a ako použiť AI nástroje
 
 **Nehodnotím:**
+
 - Perfektný dizajn
 - Extra features
 - Zložitý kód
@@ -182,9 +199,11 @@ Cieľ: Naučiť sa ho efektívne využívať.
 ### 5.2 Príklady otázok na skúške
 
 **TECHNICKÉ (základné):**
+
 - Aký stack si použil a prečo
 
 **AI WORKFLOW (hlavný focus):**
+
 - Ktorý AI nástroj ste používali najviac? Prečo?
 - Aké ďalšie nástroje ste použili?
 - Ukážte mi váš najlepší prompt. Prečo fungoval?
@@ -194,10 +213,12 @@ Cieľ: Naučiť sa ho efektívne využívať.
 - Koľko približne času vám AI ušetril?
 
 **APLIKAČNÉ:**
+
 - Ukážte mi časť kódu ktorú vygeneroval AI, ale museli ste ju upraviť
 - Čo by ste urobili inak keby ste začínali znova?
 
 **Nebojte sa povedať:**
+
 - "Toto nefungovalo, musel som to prepísať"
 - "Nevedel som to, použil som AI"
 - "Urobil by som to inak"
@@ -211,5 +232,3 @@ Cieľ: Naučiť sa ho efektívne využívať.
 ### 6.2 Príloha B (Backend zadanie)
 
 ### 6.3 Príloha C (Šablóna pre zapisovanie vášho workflowu)
-
-

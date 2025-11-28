@@ -80,6 +80,9 @@
 						placeholder="Search GitHub username..."
 						class="w-full pl-12 pr-4 py-3 bg-transparent text-[rgb(var(--text-main))] placeholder-[rgb(var(--text-secondary))] border-none outline-none"
 					/>
+					{#if error}
+						<span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#F74646] text-sm font-semibold">No results</span>
+					{/if}
 				</div>
 				<button
 					onclick={handleSearch}
@@ -91,24 +94,19 @@
 			</div>
 		</div>
 
-		<!-- Error panel -->
-		{#if error}
-			<div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mt-6">
-				<div class="flex items-center gap-3">
-					<svg class="w-6 h-6 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-					</svg>
-					<div>
-						<h3 class="text-lg font-semibold text-red-800 dark:text-red-200">No results</h3>
-						<p class="text-red-700 dark:text-red-300">{error}</p>
-					</div>
-				</div>
-			</div>
-		{/if}
 
-		<!-- User profile -->
+
+		<!-- User profile or error -->
 		{#if user}
 			<UserProfile {user} />
+		{:else if error}
+			<div class="bg-[rgb(var(--bg-card))] rounded-lg shadow-lg p-4 md:p-6">
+				<div class="flex flex-col items-center justify-center text-center py-8">					
+					<h2 class="text-2xl font-bold text-[rgb(var(--text-main))] mb-2">No results found!</h2>
+					<p class="text-[rgb(var(--text-secondary))]">{error}</p>
+					<p class="text-[rgb(var(--text-secondary))]">We couldn’t find any GitHub users matching your search. Please double-check the username and try again.</p>
+				</div>
+			</div>
 		{/if}
 	</div>
 </main>

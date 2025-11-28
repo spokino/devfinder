@@ -21,7 +21,7 @@ Vyplň približný čas strávený s každým nástrojom:
 - [ ] **Claude.ai:** **\_** hodín
 - [x] **Iné:** opencode (claude, gemini, grok)
 
-**Celkový čas vývoja (priližne):** 16 hodín
+**Celkový čas vývoja (priližne):** 4 hodín
 
 ---
 
@@ -424,7 +424,7 @@ AI úspešne aktualizoval AGENTS.md s informáciami o projekte, Figma dizajne a 
 
 ```
 
-[Detailný popis problému - čo nefungovalo? Aká bola chyba?]
+AI sa v plan mode snazil vytvorit subor co mal zakazane a potom sa zacyklil.
 
 ```
 
@@ -432,7 +432,7 @@ AI úspešne aktualizoval AGENTS.md s informáciami o projekte, Figma dizajne a 
 
 ```
 
-[Tvoja analýza - prečo AI toto vygeneroval? Čo bolo v prompte zlé?]
+Nerespektoval nastavenie pre plan agenta ked su vsetky tooly a pristupy k filom zakazane.
 
 ```
 
@@ -440,15 +440,13 @@ AI úspešne aktualizoval AGENTS.md s informáciami o projekte, Figma dizajne a 
 
 ```
 
-[Krok za krokom - čo si urobil? Upravil prompt? Prepísal kód? Použil iný nástroj?]
+Zastavil som ho a prepol na build agenta aby mohol pokracovat.
 
 ```
 
 **Čo som sa naučil:**
 
 ```
-
-[Konkrétny learning pre budúcnosť - čo budeš robiť inak?]
 
 ```
 
@@ -461,18 +459,21 @@ AI úspešne aktualizoval AGENTS.md s informáciami o projekte, Figma dizajne a 
 **Čo sa stalo:**
 
 ```
+Ked vyjde novy LLM (Gemini 3.0 teraz) tak sa to nesnaz pouzit je to strata casu ako je to vytazene.
 
 ```
 
 **Prečo:**
 
 ```
+Timeout non-stop.
 
 ```
 
 **Riešenie:**
 
 ```
+Wait
 
 ```
 
@@ -610,7 +611,7 @@ Responsive design - zabezpečenie pixel-perfect implementácie na všetkých bre
 
 ```
 
-Vždy používať Figma MCP na získanie presných assetov namiesto generických ikon
+Vždy používať Figma MCP na získanie presných assetov namiesto generických ikon, ked sa to niekomu bude chciet nakreslit
 
 ```
 
@@ -714,6 +715,7 @@ Používať currentColor pre SVG ikony kvôli správnemu themingu
 
 ```
 
+Basic setup je dobre si vytovit sam. a potom pouzit AI.
 Vždy začnite s analýzou kódu a vytvorením AGENTS.md - to dá AI kontext pre celý projekt
 
 ```

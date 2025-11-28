@@ -8,6 +8,19 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	interface GitHubUser {
+		avatar_url: string;
+		name: string | null;
+		login: string;
+		bio: string | null;
+		location: string | null;
+		blog: string | null;
+		public_repos: number;
+		followers: number;
+		following: number;
+		created_at: string;
+	}
 }
 
 export {};

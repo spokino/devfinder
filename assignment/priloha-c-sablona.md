@@ -21,7 +21,7 @@ Vyplň približný čas strávený s každým nástrojom:
 - [ ] **Claude.ai:** **\_** hodín
 - [ ] **Iné:** opencode (grok)
 
-**Celkový čas vývoja (priližne):** **\_** hodín
+**Celkový čas vývoja (priližne):** 3 **\_** hodín
 
 ---
 
@@ -87,7 +87,7 @@ Nefungoval prepinac dark modu, dizajn celkom nesedel s figmou
 **Poznámky / Learnings:**
 
 ```
-Prečo fungoval? Grok 
+Prečo nefungoval? Grok 
 ```
 
 ### Prompt #2: ****************\_****************
@@ -196,7 +196,7 @@ the mobile view has wrong wraping after the profile picture
 ```
 
 **Výsledok:**  
-⭐⭐ Slabé, musel som veľa prepísať
+⭐⭐ Slabé
 
 **Úpravy:**
 
@@ -227,7 +227,7 @@ the mobile view has wrong wraping after the profile picture
 ```
 
 **Výsledok:**  
-⭐⭐ Slabé, musel to nechat prepisat cez prompt
+⭐⭐ Slabé, musel som to nechat prepisat cez prompt
 
 **Úpravy:**
 
@@ -307,13 +307,13 @@ Presmeruje a vysledok je dobre
 **Úpravy:**
 
 ```
-
+N/A
 ```
 
 **Poznámky:**
 
 ```
-
+Mohol som aj rucne spravit redirect....
 ```
 
 ---
@@ -329,7 +329,7 @@ on the dashboard page we are missing the dark/light mode theme switch
 ```
 
 **Výsledok:**  
-Pridal prepinac, works
+✅ Pridal prepinac, works
 
 
 
@@ -356,25 +356,25 @@ Pridal prepinac, works
 **Čo sa stalo:**
 
 ```
-Komplikovanejsie veci bolo potrebne viac krat opraovavat aby sa Grok dopracoval k zelanemu vysledku.
+Komplikovanejsie veci bolo potrebne viac krat opraovavat (viac promptov), aby sa Grok dopracoval k zelanemu vysledku.
 ```
 
 **Prečo to vzniklo:**
 
 ```
-Grok - tento LLM model je super rychly na jednoduchsie veci, ale pri takychto komplikovanejsich promptoch ma problem dopracovat sa na prcy krat k zelanemu vysledku.
+Grok - tento LLM model je super rychly na jednoduchsie veci, ale pri takychto komplikovanejsich promptoch ma problem dopracovat sa na prvy krat k zelanemu vysledku.
 ```
 
 **Ako som to vyriešil:**
 
 ```
-Upravil som prompt s informaciami co je zle a co treba opravit. Riesil by som to zmenul LLM na Sonnet.
+Upravil som prompt s informaciami co je zle a co treba opravit. Riesil by som to zmenov LLM na Sonnet.
 ```
 
 **Čo som sa naučil:**
 
 ```
-[Konkrétny learning pre budúcnosť - čo budeš robiť inak?]
+Ohodnotit zlozitost pozadovaneho tasku a podla toho zvolit LLM.
 ```
 
 **Screenshot / Kód:** [ ] Priložený
@@ -393,7 +393,7 @@ LLM mal problem pouzit novsiu syntax zavedenu v svelte 5
 **Prečo:**
 
 ```
-sposobene datumom treningu
+sposobene datumom treningu, prevladajuci dcodebase svelte 4
 
 ```
 
@@ -423,6 +423,7 @@ API volania a vytvaranie pozdovanych DTO/modelov
 **2.**
 
 ```
+auto debug cez chrome-devtools, kde si precita aj konzolu a zisti whats up
 
 ```
 
@@ -469,6 +470,7 @@ git is your friend, pokial to nejde ako sa ocakavalo, revert is king
 **2.**
 
 ```
+/revert
 
 ```
 
@@ -525,7 +527,7 @@ opencode
 **Prečo?**
 
 ```
-Claude jedoznacne vyhrava ako LLM. Ale velmi zalezi od potreby pouzitia. Spravit API call vie asi kazdy OK ale pokial ide o frontend dizajn komplexnejsie LLM vedia urobit presnejsiu pracu. 
+Claude Sonnet jedoznacne vyhrava ako LLM. Ale velmi zalezi od potreby pouzitia. Spravit API call vie asi kazdy OK, ale pokial ide o frontend dizajn komplexnejsie LLM vedia urobit presnejsiu pracu. 
 
 MCP chrome-devtools je velmi uzitocny, vie si web otvorit a pozriet co spravil a opravit svoje halucinacie.
 
@@ -536,6 +538,7 @@ MCP chrome-devtools je velmi uzitocny, vie si web otvorit a pozriet co spravil a
 **Prečo?**
 
 ```
+n/a
 
 ```
 
@@ -560,7 +563,7 @@ Gemini 3 release obmedzoval dostupnost Gemini 2.5 Pro
 ### 6.4 Najväčší "AHA!" moment
 
 ```
-[Kedy ti došlo niečo dôležité o AI alebo o developmente?]
+Prepinanie medzi plan a build agentom je vyborne.
 ```
 
 ---
@@ -568,11 +571,11 @@ Gemini 3 release obmedzoval dostupnost Gemini 2.5 Pro
 ### 6.5 Čo by som urobil inak
 
 ```
-[Keby si začínal znova, čo by si zmenil?]
+Asi by som zmenil LLM a viac by som pridal contextu plan agentovi
 ```
 
 ### 6.6 Hlavný odkaz pre ostatných
 
 ```
-[Keby si mal povedať jednu vec kolegom o AI development, čo by to bylo?]
+You live and you learn.
 ```

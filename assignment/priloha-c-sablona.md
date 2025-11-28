@@ -212,7 +212,7 @@ Panel sa uz zobrazuje ale nie je podla dizajnu
 
 ---
 
-### Prompt #5: ****************\_****************
+### Prompt #6: ****************\_****************
 
 **Nástroj:** [ opencode ]  
 **Kontext:** ********\_********
@@ -334,7 +334,7 @@ Upravil som prompt s informaciami co je zle a co treba opravit. Riesil by som to
 **1.**
 
 ```
-[Príklad: Figma MCP spacing - často o 4-8px vedľa, musel som manuálne opravovať]
+Tieto horsie LLM mali vaci problem presne dodrzat dizajn a bolo potrebne ich viac usmernovat. 
 ```
 
 **2.**
@@ -416,6 +416,9 @@ Upravil som prompt s informaciami co je zle a co treba opravit. Riesil by som to
 **Prečo?**
 
 ```
+Claude jedoznacne vyhrava ako LLM. Ale velmi zalezi od potreby pouzitia. Spravit API call vie asi kazdy OK ale pokial ide o frontend dizajn komplexnejsie LLM vedia urobit presnejsiu pracu. 
+
+MCP chrome-devtools je velmi uzitocny, vie si web otvorit a pozriet co spravil a opravit svoje halucinacie.
 
 ```
 

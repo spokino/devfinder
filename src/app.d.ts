@@ -21,6 +21,7 @@ declare global {
 		followers: number;
 		following: number;
 		created_at: string;
+		twitter_username: string | null;
 	}
 }
 

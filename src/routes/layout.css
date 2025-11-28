@@ -6,10 +6,10 @@
 
 :root {
 	font-family: 'Space Mono', monospace;
-	--bg-main: 255 255 255;
+	--bg-main: 246 248 255;
 	--bg-card: 255 255 255;
-	--text-main: 20 29 47;
-	--text-secondary: 107 114 128;
+	--text-main: 43 52 66;
+	--text-secondary: 110 128 152;
 	--border: 229 231 235;
 }
 
